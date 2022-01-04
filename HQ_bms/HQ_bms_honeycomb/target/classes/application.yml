@@ -1,0 +1,55 @@
+server:
+    port: 8796
+    servlet:
+        context-path: /
+
+spring:
+    application:
+        name:HQ_bms_honeycomb
+    devtools:
+      restart:
+          enabled: true #设置开启热部署
+          additional-paths: hq_bms_honeycomb/src/main/java #重启目录
+#    security:
+#        basic:
+#          enable: true
+#        user:
+#            name: belink
+#            password: byd123
+#logging:
+#    config: classpath:logback.xml
+#    level:
+#        com.hq.bms: trace
+#        root: warn
+# 配置了公钥和私钥的位置
+#rsa:
+#    key:
+#        pubKeyPath: D:\Belink\auth_key\id_key_rsa.pub
+#        priKeyPath: D:\Belink\auth_key\id_key_rsa
+
+eureka:
+    instance:
+        hostname: localhost
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+        service-url:
+            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#eureka:
+#    instance:
+#        hostname: localhost
+#        client:
+#            #是否注册自身到eureka服务器
+#            register-with-eureka: false
+#            #是否从eureka服务器获取注册信息
+#            fetch-registry: false
+#            #设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
+#            service-url:
+#                defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#    server:
+#        #设为false，关闭自我保护，即Eureka server在云心光器件会去统计心跳失败比例在15分钟之内是否低于85%,如果低于85%，EurekaServer
+#        #会将这些事例保护起来，让这些事例不会过期，但是在保护器内如果刚哈这个服务提供者非正常下线了，此时服务消费者会拿到一个无效的服务
+#        #实例，此时调用会失败，对于这个问题需要服务消费者端有一些容错机制，如重试、断路器等；
+#        enable-self-preservation: false
+#        #扫描失效服务的间隔时间（单位是毫秒，摩恩是60*1000)，即60s
+#        eviction-interval-timer-in-ms: 10000
